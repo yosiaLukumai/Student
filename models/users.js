@@ -20,6 +20,12 @@ const users = mongoose.Schema(
     },
     permission: {
       type:Boolean
+    },
+    isMonitor: {
+      type:Boolean
+    },
+    isSuspended: {
+      type:Boolean
     }
   },
   {

@@ -29,10 +29,15 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username,email,isMonitor, isSuspended, password,role,classLevel } = req.body;
     const saved = await userModel.create({
+      username,
       email,
       password,
+      role,
+      classLevel,
+      isSuspended,
+      isMonitor
     });
     if (saved) {
       return res.json(createOutput(true, saved));
@@ -58,11 +63,11 @@ const updateUser = async (req, res) => {
     const id = req.params.id;
     // querying the user in the database
     const user = await userModel.findById(id);
-    const { email, classLevel, role, permission } = req.body;
+    const { email, classLevel, role,isSuspended, isMonitor, permission,username } = req.body;
     if (user) {
       const updated = await userModel.updateOne(
         { email: user.email },
-        { email, classLevel, role,permission }
+        { email, classLevel, role,permission,username, isSuspended, isMonitor }
       );
 
       if (updated) {
