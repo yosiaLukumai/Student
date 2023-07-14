@@ -1,1 +1,1 @@
-# students management system api
+# Simple starter template for Node js Server side
